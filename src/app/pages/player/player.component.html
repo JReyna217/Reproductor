@@ -1,1 +1,47 @@
-<p>player works!</p>
+<div class="container">
+    <mat-toolbar color="primary" class="main-toolbar">
+      <span>Reproductor</span>
+    </mat-toolbar>
+    <div class="content">
+        <div class="logo">
+          <img [src]="caratulaCancionActual" alt="Music" width="20%" height="20%">
+          <br />
+          <br />
+          <div>{{nombreCancionActual}}</div>
+      </div>
+      <mat-list color="primary" appScrollable class="main-list">
+        <h3 mat-subheader>Canciones</h3>
+        <mat-list-item *ngFor="let cancion of canciones; let i = index" (click)="openFile(cancion, i)">
+          <img [src]="cancion.caratula" alt="Song Image" width="60px" height="60px">
+          <h4 mat-line>{{ cancion.nombre }}</h4>
+          <h5 mat-line>by {{ cancion.artista }}</h5>
+          <mat-icon color="primary" *ngIf="cancionActual.index === i && !state?.error">volume_up</mat-icon>
+          <h6 *ngIf="cancionActual.index === i && state?.error">ERROR</h6>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="media-footer">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+           {{ state?.readableCurrentTime }}
+           <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime" (input)="onSliderChangeEnd($event)" [disabled]="state?.error || cancionActual.index === undefined"></mat-slider>
+           {{ state?.readableDuration }}
+        </mat-toolbar-row>
+        <mat-toolbar-row class="media-action-bar">
+          <button mat-button [disabled]="isFirstPlaying()" (click)="previous()">
+            <mat-icon mat-list-icon>skip_previous</mat-icon>
+          </button>
+          <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+          </button>
+          <button mat-button (click)="pause()" *ngIf="state?.playing">
+            <mat-icon mat-list-icon>pause</mat-icon>
+          </button>
+          <button mat-button [disabled]="isLastPlaying()" (click)="next()">
+            <mat-icon mat-list-icon>skip_next</mat-icon>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+</div>
