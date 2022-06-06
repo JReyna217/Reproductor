@@ -8,40 +8,40 @@ import { AudioFile } from "../interfaces/audio-file";
 export class MusicService {
   files: AudioFile[] = [
     {
-      url: "../assets/audio/Cake By the Ocean.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Cake%20By%20the%20Ocean.m4a",
       nombre: "Cake By the Ocean",
       artista: "DNCE",
-      caratula: "../assets/images/Cake By the Ocean.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Cake%20By%20the%20Ocean.jpg"
     },
     {
-      url: "../assets/audio/Cool for the Summer.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Cool%20for%20the%20Summer.m4a",
       nombre: "Cool for the Summer",
       artista: "Demi Lovato",
-      caratula: "../assets/images/Cool for the Summer.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Cool%20for%20the%20Summer.jpg"
     },
     {
-      url: "../assets/audio/Dancing with a Stranger.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Dancing%20with%20a%20Stranger.m4a",
       nombre: "Dancing with a Stranger",
       artista: "Sam Smith & Normani",
-      caratula: "../assets/images/Dancing with a Stranger.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Dancing%20with%20a%20Stranger.jpg"
     },
     {
-      url: "../assets/audio/Secrets.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Secrets.m4a",
       nombre: "Secrets",
       artista: "The Weekend",
-      caratula: "../assets/images/Secrets.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Secrets.jpg"
     },
     {
-      url: "../assets/audio/Sunflower.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Sunflower.m4a",
       nombre: "Sunflower",
       artista: "Post Malone & Swae Lee",
-      caratula: "../assets/images/Sunflower.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Sunflower.jpg"
     },
     {
-      url: "../assets/audio/Without a Trace.m4a",
+      url: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/audio/Without%20a%20Trace.m4a",
       nombre: "Without a Trace",
       artista: "Kill the Noise",
-      caratula: "../assets/images/Without a Trace.jpg"
+      caratula: "https://github.com/JReyna217/Reproductor/raw/main/src/assets/images/Without%20a%20Trace.jpg"
     },
   ];
 
