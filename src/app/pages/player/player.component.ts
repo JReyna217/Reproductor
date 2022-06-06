@@ -27,7 +27,10 @@ export class PlayerComponent {
 
   cancionActual: any = {};
 
-  constructor(private audioService: AudioService, private musicService: MusicService) 
+  constructor(
+    public audioService: AudioService, 
+    public musicService: MusicService
+    ) 
   {
     musicService.getFiles().subscribe(canciones =>{
       this.canciones = canciones;
@@ -53,34 +56,41 @@ export class PlayerComponent {
   }
 
   pause() {
-
+    this.audioService.pause();
   }
 
   play() {
-
+    this.audioService.play();
   }
 
   stop() {
-
+    this.audioService.stop();
   }
 
   next() {
-
+    const index = this.cancionActual.index + 1;
+    this.playSong(index);
   }
 
   previous() {
+    const index = this.cancionActual.index - 1;
+    this.playSong(index);
+  }
 
+  playSong(index: number){
+    const cancion = this.canciones[index];
+    this.openFile(cancion, index);
   }
 
   isFirstPlaying() {
-
+    return this.cancionActual.index === 0;
   }
 
   isLastPlaying() {
-
+    return this.cancionActual.index === this.canciones.length - 1;
   }
 
   onSliderChangeEnd(change: any) {
-
+    this.audioService.seekTo(change.value);
   }
 }

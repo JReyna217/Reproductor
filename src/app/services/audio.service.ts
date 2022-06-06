@@ -15,15 +15,15 @@ export class AudioService {
   private audio = new Audio();
 
   audioEvents = [
-    Eventos.finalizado,
+    Eventos.ended,
     Eventos.error,
-    Eventos.reproducir,
-    Eventos.reproduciendo,
-    Eventos.pausa,
-    Eventos.actualizarTiempo,
-    Eventos.puedeReproducir,
-    Eventos.cargarMetadata,
-    Eventos.cargarInicio
+    Eventos.play,
+    Eventos.playing,
+    Eventos.pause,
+    Eventos.timeupdate,
+    Eventos.canplay,
+    Eventos.loadedmetadata,
+    Eventos.loadstart
   ];
 
   private state: StreamState = {
@@ -50,16 +50,19 @@ export class AudioService {
       this.audio.load();
       this.audio.play();
   
-      const handler = (evento: Event) => {
-        this.updateStateEvents(evento);
-        observer.next(evento);
+      const handler = (event: Event) => {
+        debugger;
+        this.updateStateEvents(event);
+        observer.next(event);
       };
   
       this.addEvents(this.audio, this.audioEvents, handler);
       return () => {
         this.audio.pause();
         this.audio.currentTime = 0;
+
         this.removeEvents(this.audio, this.audioEvents, handler);
+
         this.reiniciarState();
       };
     });
@@ -99,19 +102,21 @@ export class AudioService {
   }
 
   private updateStateEvents(evento: Event): void {
+    debugger;
+    console.log(evento.type);
     switch (evento.type) {
-      case Eventos.puedeReproducir:
+      case Eventos.canplay:
         this.state.duracion = this.audio.duration;
         this.state.duracionMostrar = this.formatTime(this.state.duracion);
         this.state.puedeReproducir = true;
         break;
-      case Eventos.reproduciendo:
+      case Eventos.playing:
         this.state.reproduciendo = true;
         break;
-      case Eventos.pausa:
+      case Eventos.pause:
         this.state.reproduciendo = false;
         break;
-      case Eventos.actualizarTiempo:
+      case Eventos.timeupdate:
         this.state.tiempoActual = this.audio.currentTime;
         this.state.tiempoActualMostrar = this.formatTime(this.state.tiempoActual);
         break;
